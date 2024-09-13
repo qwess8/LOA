@@ -7,28 +7,25 @@
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	int *num, n;
-	int min, max;
+	int num[10][10];
+	int sum = 0;
 	srand(time(NULL));
-	scanf("%d", &n);
-	num =(int*)malloc(n * sizeof(int));
-	for(int i = 0; i<n; i++){
-		num[i] = rand()%10;
-		printf("%d\n", num[i]);
+	for(int i = 0; i<10; i++){
+		for(int j = 0; j<10; j++){
+			num[i][j] = rand()%10;
+			printf(" %d ", num[i][j]);
+		}
+		printf("\n");
 	}
-
-	min = num[0];
-	max= num[0];
-	for(int i = 0; i < n; i++){
-		if(num[i]< min) min = num[i];
-		if(num[i]> max) max = num[i];
+	printf("\n");
+	for(int i = 0; i < 10; i++){
+		for(int j = 0; j < 10; j++){
+			sum+=num[j][i];
+		}
+		printf("%d ", sum);
+		sum = 0;
 	}
-
-	printf("\nmax - min = %d", max-min);
-	free(num);
 	
-
-	getchar();
 	getchar();
 	return 0;
 }
