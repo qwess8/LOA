@@ -9,9 +9,10 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	int num[10];
 	int min, max;
+	srand(time(NULL));
 	
 	for(int i = 0; i<10; i++){
-		num[i] = i;
+		num[i] = rand()%10;
 		printf("%d\n", num[i]);
 	}
 
