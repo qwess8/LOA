@@ -2,44 +2,56 @@
 //
 
 #include "stdafx.h"
-#include <malloc.h>
-#include <locale.h>
+#include <time.h>
 #include <stdlib.h>
-
+#include <locale.h>
+#include <string.h>
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 	setlocale(LC_ALL, "Rus");
+	struct student
+	{
+		char famil[20];
+		char name[20], facult[20];
+		int Nomzach;
+	} stud[3];
 
-	int N,M,count=0;
+	char imya[20], familiya[20], facultet[20];
+	int nomer=0;
 
-	printf("Введите количество столбцов: ");
-	scanf("%d", &M);
-	printf("Введите количество рядов: ");
-	scanf("%d", &N);
+	for(int i=0; i<3; i++){
+		printf("Введите фамилию студента\n"); scanf("%20s", stud[i].famil);
+	}
 
-	int **A = (int **)malloc(N*sizeof(int *));
+	for(int i=0; i<3; i++){
+		printf("Введите имя студента\n"); scanf("%20s", stud[i].name);
+	}
+
+	for(int i=0; i<3; i++){
+		printf("Введите название факультета студента %s %s\n", stud[i].famil, stud[i].name); scanf("%20s", stud[i].facult);
+	}
+
+	for(int i=0; i<3; i++){
+		printf("Введите номер зачетной книжки студента %s %s\n", stud[i].famil, stud[i].name); scanf("%d", &stud[i].Nomzach);
+	}
+
+	for(int i=0; i<3; i++){
+		printf("Студент %s %s обучается на факультете %s, номер зачетной книжки %d\n", stud[i].famil, stud[i].name, stud[i].facult, stud[i].Nomzach);
+	}
+
+	printf("Введите имя нужного студента: ");scanf("%20s", imya);
+	printf("Введите фамилию нужного студента: ");scanf("%20s", familiya);
+	printf("Введите факультет нужного студента: ");scanf("%20s", facultet);
+	printf("Введите номер зачетной книжки нужного студента: ");scanf("%d", &nomer);
+
+
+	for(int i=0; i<3; i++){
+		if(strcmp(stud[i].name, imya)==0 || strcmp(stud[i].famil, familiya)==0 || strcmp(stud[i].facult, facultet)==0 || nomer == stud[i].Nomzach){
+			printf("Студент %s %s обучается на факультете %s, номер зачетной книжки %d\n", stud[i].famil, stud[i].name, stud[i].facult, stud[i].Nomzach);
+		}
+	}
 	
-	for(int i = 0; i < N; i++) {
-		A[i] = (int *)malloc(M*sizeof(int));
-	}
-
-	for(int i = 0; i < N; i++){
-		for(int j = 0; j < M; j++){
-			A[i][j] = rand()%4;
-			printf("%d ", A[i][j]);
-		}
-		printf("\n");
-	}
-
-	for(int i = 0; i < N/2; i++){
-		for(int j = 0; j < M; j++){
-			if(A[i][j] != 0) count++;
-		}
-	}
-
-	printf("Количество ненулевых элементов в левой части массива: %d", count);
-
 	getchar();
 	getchar();
 	return 0;
